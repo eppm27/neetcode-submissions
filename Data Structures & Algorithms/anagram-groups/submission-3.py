@@ -1,0 +1,24 @@
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        group = {}
+        for word in strs:
+            count = [0] * 26
+            for char in word:
+                index = ord(char) - ord("a")
+                count[index] += 1
+
+            key = tuple(count)
+            if key in group:
+                group[key].append(word)
+            else:
+                group[key] = [word]
+        return list(group.values())
+
+        # group = {}
+        # for word in strs:
+        #     key = tuple(sorted(word))
+        #     if key in group:
+        #         group[key].append(word)
+        #     else:
+        #         group[key] = [word]
+        # return list(group.values())
